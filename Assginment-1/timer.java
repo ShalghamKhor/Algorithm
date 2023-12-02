@@ -2,11 +2,11 @@
 public class timer {
     long startTime, endTime;
 
-    public void starttime() {
+    public void startTime() {
         startTime = System.nanoTime();
     }
 
-    public void endtime() {
+    public void endTime() {
         endTime = System.nanoTime();
     }
 
