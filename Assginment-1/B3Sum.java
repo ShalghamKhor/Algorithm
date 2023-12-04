@@ -1,34 +1,83 @@
-public class B3Sum {
-    public void bruteForce(int[] listOfnunmbers, int sumTarget){
-        boolean found = false;
-        for (int i = 0; i < listOfnunmbers.length; i++){
-            for (int j = i + 1; j < (listOfnunmbers.length); j++){
-                for(int k = j + 1 ; k <listOfnunmbers.length; k++){
-                    if (listOfnunmbers[i] + listOfnunmbers[j] + listOfnunmbers[k] == sumTarget){
-                        System.out.println(listOfnunmbers[i] + " " + listOfnunmbers[j] + " " + listOfnunmbers[k]);
-                        found = true;
-                    }
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
-                }
-            }
-        }
-        if(!found) {
-            System.out.println("no numbber in the list equals the target");
+public class B3Sum {
+    timer timer = new timer();
+    int [] arraySize = {10, 100, 1000};
+    Random random = new Random();
+
+    public void randomArryTest(){
+        for(int size : arraySize){
+            int[] randomArray = randomArray(size);
+            int targetSum = random.nextInt(size);
+
+            timer.startTime();
+            bruteForce(randomArray, targetSum);
+            timer.endTime();
+            System.out.print("Time for size using BruteForce " + size + ": ");
+            timer.duration();
+            timer.startTime();
+            twoPointer(randomArray, targetSum);
+            timer.endTime();
+            System.out.print("Time for size using quicker 3sum " + size + ": ");
+            timer.duration();
+            System.out.println(" ");
         }
     }
 
-
-    public void quick3Sum(int [] listOfNumbers, int targetSum){
-        int lower = 0;
-        int higher = listOfNumbers.length-1;
-        while(lower <= higher){
-            int midPoint = (lower + higher)/2;
-            if (listOfNumbers[lower] + listOfNumbers[midPoint] + listOfNumbers[higher] == targetSum){
-                System.out.println(listOfNumbers[lower] +"," + listOfNumbers[midPoint] +"," + listOfNumbers[higher]);
-            } else if (listOfNumbers[lower] + listOfNumbers[midPoint] + listOfNumbers[higher] < targetSum) {
-                lower++;
-            }
-            else higher--;
+    public int[] randomArray(int size){
+        int [] generatedArray = new int[size];
+        for(int i = 0; i < size; i++){
+            generatedArray[i] = random.nextInt(size);
         }
+        return generatedArray;
+    }
+
+    public void bruteForce(int[] listOfNumbers, int sumTarget){
+        Arrays.sort(listOfNumbers);
+        List<List<Integer>> result = new ArrayList<>();
+        for (int i = 0; i < listOfNumbers.length; i++){
+            for (int j = i + 1; j < (listOfNumbers.length); j++){
+                for(int k = j + 1 ; k <listOfNumbers.length; k++){
+                    if (listOfNumbers[i] + listOfNumbers[j] + listOfNumbers[k] == sumTarget){
+                        result.add(Arrays.asList(listOfNumbers[i], listOfNumbers[j],listOfNumbers[k]));
+                    }
+                }
+            }
+        }
+        /**
+        for (List<Integer> res : result){
+            System.out.println(res);
+        }**/
+
+    }
+
+
+    public void twoPointer(int [] listOfNumbers, int targetSum){
+        Arrays.sort(listOfNumbers);
+        List<List<Integer>> result = new ArrayList<>();
+        for(int i = 0;i <listOfNumbers.length - 2; i++) {
+            if (i == 0 || (i > 0 && listOfNumbers[i] != listOfNumbers[i - 1])) {
+                int lower = i+1;
+                int higher = listOfNumbers.length-1;
+                while (lower < higher) {
+                    int sum = listOfNumbers[i] + listOfNumbers[lower] + listOfNumbers[higher];
+                    //int midPoint = (lower + higher) / 2;
+                    if (sum == targetSum) {
+                        result.add(Arrays.asList(listOfNumbers[i], listOfNumbers[lower], listOfNumbers[higher]));
+                        lower++;
+                        higher--;
+                    } else if (sum < targetSum) {
+                        lower++;
+                    } else higher--;
+                }
+            }
+        }
+        /**
+        for (List<Integer> res : result){
+            System.out.println(res);
+        }**/
     }
 }

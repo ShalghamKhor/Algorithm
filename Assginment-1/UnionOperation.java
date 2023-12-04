@@ -7,8 +7,6 @@ public class UnionOperation {
     timer timer = new timer();
     Random random = new Random();
     public void quickFindoperation(){
-
-
         for(int arraySize : arraySizes){
             unionFind uf = new unionFind(arraySize);
             List<int[]> pairs = randomPair(arraySize, random);
@@ -23,6 +21,7 @@ public class UnionOperation {
 
         }
     }
+
     public void quickUniondoperation(){
 
         for(int arraySize : arraySizes){
