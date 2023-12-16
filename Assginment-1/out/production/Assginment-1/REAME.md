@@ -1,1 +1,0 @@
-Compile: javac Main.java ---> then run as java Main
