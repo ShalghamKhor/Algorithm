@@ -1,10 +1,12 @@
+import timer.timer;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class UnionOperation {
     int[] arraySizes = {10, 100, 1000, 10000, 100000};
-    timer timer = new timer();
+    timer.timer timer = new timer();
     Random random = new Random();
     public void quickFindoperation(){
         for(int arraySize : arraySizes){

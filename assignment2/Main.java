@@ -4,6 +4,6 @@ public class Main {
     public static void main(String[] args) {
         GenericDeque gd = new GenericDeque();
         gd.addFirst(1);
-        gd.size();
+        gd.Size();
     }
 }

@@ -1,10 +1,10 @@
-package assignment2.problem2;
+package assignment2.task2;
 
-public class AvlTree {
+public class Bst {
     Node root;
-    boolean isDeleted;
+    Boolean isDeleted;
 
-    public AvlTree(){
+    public Bst() {
         root = null;
     }
 
@@ -25,8 +25,7 @@ public class AvlTree {
             return current;
         }
         current.height = 1 + Math.max(height(current.left), height(current.right));
-
-        return rebalance(current);
+        return current;
     }
 
     public void printTree() {
@@ -100,12 +99,7 @@ public class AvlTree {
             current.right = deleteRecursion(current.right, smallest.value);
             isDeleted = true;
         }
-
-        if(current != null){
-            current.height = 1 + Math.max(height(current.left), height(current.right));
-            current = rebalance(current);
-        }
-
+        current.height = 1 + Math.max(height(current.left), height(current.right));
         return current;
     }
 
@@ -116,71 +110,6 @@ public class AvlTree {
         }
         return currentNode;
     }
-
-    public Node rebalance(Node node){
-        int balanceFactor = balanceFactor(node);
-
-        // Left heavy
-        if (balanceFactor > 1){
-            // Left-Left
-            if (balanceFactor(node.left) >= 0){
-                return rightRotate(node);
-            }
-            // Left-right
-            else {
-                node.left = leftRotate(node.left);
-                return rightRotate(node);
-            }
-        }
-        //right heavy
-        else if(balanceFactor < -1){
-            //right-right
-            if (balanceFactor < 0){
-                return leftRotate(node);
-            }
-            // right-left
-            else {
-                node.right = rightRotate(node.right);
-                return leftRotate(node);
-            }
-        }
-        return node;
-    }
-
-
-    public Node leftRotate(Node node){
-        Node sub_root = node.right;
-        Node leftSubTree = sub_root.left;
-
-        sub_root.left = node;
-        node.right = leftSubTree;
-
-        node.height = 1 + Math.max(height(node.left), height(node.right));
-        sub_root.height = 1 + Math.max(height(sub_root.left), height(sub_root.right));
-
-        return sub_root;
-    }
-
-    public Node rightRotate(Node node){
-        Node sub_root = node.left;
-        Node rightSubTree = sub_root.right;
-
-        sub_root.right = node;
-        node.left = rightSubTree;
-        node.height = 1 + Math.max(height(node.left), height(node.right));
-        sub_root.height = 1 + Math.max(height(sub_root.left), height(sub_root.right));
-
-        return sub_root;
-    }
-
-    public int balanceFactor(Node current){
-        if (current.height == 0){
-            return 0;
-        }
-        return height(current.left) - height(current.right);
-
-    }
-
     public int height(Node node){
         if(node == null){
             return 0;
@@ -194,5 +123,4 @@ public class AvlTree {
         }
         return root.height;
     }
-
 }

@@ -1,3 +1,4 @@
+package timer;
 
 public class timer {
     long startTime, endTime;

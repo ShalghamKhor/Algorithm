@@ -1,10 +1,12 @@
+import timer.timer;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
 public class B3Sum {
-    timer timer = new timer();
+    timer.timer timer = new timer();
     int [] arraySize = {10, 100, 1000};
     Random random = new Random();
 
