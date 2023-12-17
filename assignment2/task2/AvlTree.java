@@ -68,11 +68,12 @@ public class AvlTree {
     public void deleteNode(int value){
         isDeleted = false;
         root = deleteRecursion(root, value);
+        /*
         if (isDeleted){
             System.out.println("Node was deleted: " + value);
         }else {
             System.out.println("Node with " + value + " does not exist!");
-        }
+        }*/
 
     }
     public Node deleteRecursion(Node current, int value){
