@@ -26,7 +26,7 @@ public class Ticket {
 
     public Person get_person(){
         if (insertOrder.isEmpty()){
-            throw new NoSuchElementException("No more perosnin queue");
+            System.out.println("No more person queue");
         }
 
         Person nextPerson = queue.poll();
@@ -37,7 +37,7 @@ public class Ticket {
 
     public void delete_max_prio(){
         if (queue.isEmpty()){
-            throw new NoSuchElementException("No person in the queue");
+            System.out.println("No person in the queue");
         }
         Person person = queue.poll();
         personMap.remove(person.name);
@@ -49,7 +49,7 @@ public class Ticket {
         Person person2 = personMap.get(secondPerson);
 
         if (person1 == null || person2 == null){
-            throw new NoSuchElementException("Person not found");
+            System.out.println("Person not found");
         }
         int temporary = person1.priority;
         person1.priority = person2.priority;

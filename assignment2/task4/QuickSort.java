@@ -7,17 +7,24 @@ import java.util.Random;
 public class QuickSort {
 
     HeapSort heapSort = new HeapSort();
-    public void quickSort(int[] array, int low, int high, int depht){
+    InsertionSort insertionsort = new InsertionSort();
+
+    public void quickSort(int[] array, int low, int high, int depht, boolean changeSort){
         if (low < high){
-            if (depht <= 0){
-                heapSort.heapSort(array, low, high);
-            }else {
-                int pivot = medianOfThree(array, low, high);
-                int partitionIndex = partition(array, low, high, pivot);
-                quickSort(array, low, partitionIndex-1, depht-1);
-                quickSort(array, partitionIndex+1, high, depht-1);
+            if (depht == 0){
+                if (changeSort){
+                    heapSort.heapSort(array, low, high);
+                }else {
+                    insertionsort.insertionSort(array, low, high);
+                }
+
 
             }
+
+            int pivot = medianOfThree(array, low, high);
+            int partitionIndex = partition(array, low, high, pivot);
+            quickSort(array, low, partitionIndex-1, depht-1, changeSort);
+            quickSort(array, partitionIndex+1, high, depht-1, changeSort);
         }
     }
 

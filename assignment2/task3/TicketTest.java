@@ -2,7 +2,7 @@ package assignment2.task3;
 
 import java.util.Random;
 
-public class Test extends Ticket{
+public class TicketTest extends Ticket{
 
     public void randomPerson(int numOfPersons){
         Random random = new Random();
@@ -12,7 +12,5 @@ public class Test extends Ticket{
             insert_person(name, priority);
         }
     }
-
-
 
 }

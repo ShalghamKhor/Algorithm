@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class test {
 
-    public void tes(){
+    public void test(){
 
         int[] nodes = {10, 100, 1000, 10000};
         Random random = new Random();

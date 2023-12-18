@@ -1,7 +1,7 @@
 package assignment2.task4;
 
-public class InsertionSearch {
-    private void insertionSort(int[] array, int low, int high) {
+public class InsertionSort {
+    public void insertionSort(int[] array, int low, int high) {
         for (int i = low + 1; i <= high; i++) {
             int key = array[i];
             int j = i - 1;
