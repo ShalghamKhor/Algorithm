@@ -46,17 +46,42 @@ public class Queue<Item> implements Iterable<Item> {
         Item item = queue[randomIndex];
         queue[randomIndex] = queue[size - 1];
         queue[size - 1] = null;
+        size --;
+
+        if (size > 0 && size == queue.length/4){
+            Item [] smallerQueue = (Item[]) new Object[queue.length/2];
+            for (int i = 0; i < size; i ++){
+                smallerQueue[i] = queue[i];
+            }
+            queue = smallerQueue;
+        }
+
         return item;
     }
 
 
     @Override
     public Iterator<Item> iterator() {
+
+        Item[] shuffledQueue = (Item[]) new Object[size];
+        for (int i = 0; i <size; i++){
+            shuffledQueue[i] = queue[i];
+        }
+
+        for (int i = size -1; i > 0; i--){
+            int index = random.nextInt(i + 1);
+            Item temporary = shuffledQueue[index];
+            shuffledQueue[index] = shuffledQueue[i];
+            shuffledQueue[i] = temporary;
+        }
+
         return new Iterator<Item>() {
             int current = 0;
+            int iterationSize = size;
+
             @Override
             public boolean hasNext() {
-                return current < size;
+                return current < iterationSize;
             }
 
             @Override
@@ -64,7 +89,7 @@ public class Queue<Item> implements Iterable<Item> {
                 if (!hasNext()){
                     throw new NoSuchElementException();
                 }
-                return queue[current++];
+                return shuffledQueue[current++];
             }
         };
     }

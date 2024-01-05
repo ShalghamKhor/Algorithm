@@ -11,9 +11,9 @@ public class timer {
         endTime = System.nanoTime();
     }
 
-    public void duration() {
+    public double duration() {
         long duration = (endTime - startTime);
-        System.out.println(duration / 1000000.0 + "ms");
+        return (duration / 1000000.0);
     }
 
 }

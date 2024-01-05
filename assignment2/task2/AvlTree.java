@@ -125,31 +125,31 @@ public class AvlTree {
         if (balanceFactor > 1){
             // Left-Left
             if (balanceFactor(node.left) >= 0){
-                return rightRotate(node);
+                return rightRotation(node);
             }
             // Left-right
             else {
-                node.left = leftRotate(node.left);
-                return rightRotate(node);
+                node.left = leftRotation(node.left);
+                return rightRotation(node);
             }
         }
         //right heavy
         else if(balanceFactor < -1){
             //right-right
             if (balanceFactor < 0){
-                return leftRotate(node);
+                return leftRotation(node);
             }
             // right-left
             else {
-                node.right = rightRotate(node.right);
-                return leftRotate(node);
+                node.right = rightRotation(node.right);
+                return leftRotation(node);
             }
         }
         return node;
     }
 
 
-    public Node leftRotate(Node node){
+    public Node leftRotation(Node node){
         Node sub_root = node.right;
         Node leftSubTree = sub_root.left;
 
@@ -162,7 +162,7 @@ public class AvlTree {
         return sub_root;
     }
 
-    public Node rightRotate(Node node){
+    public Node rightRotation(Node node){
         Node sub_root = node.left;
         Node rightSubTree = sub_root.right;
 
