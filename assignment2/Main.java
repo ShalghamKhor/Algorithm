@@ -9,6 +9,10 @@ import assignment2.task4.Test;
 public class Main {
     public static void main(String[] args) {
 
+        Test tes = new Test();
+        tes.randomArrysize();
+
+        /*
         Queue<String> queue = new Queue<>();
 
         System.out.println("Is queue empty: " + queue.isEmpty());
@@ -23,7 +27,7 @@ public class Main {
 
         for (String item : queue){
             System.out.println(item);
-        }
+        }*/
 
     }
 }

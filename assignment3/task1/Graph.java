@@ -11,10 +11,13 @@ public abstract class Graph {
     }
 
     public void addVertex(int vertex){
-        adjList.putIfAbsent(vertex, new ArrayList<>());
+        for (int i = 0; i < vertex; i++) {
+            adjList.putIfAbsent(i, new ArrayList<>());
+        }
     }
 
     public abstract void addEdge(int vertex1, int vertex2, double weight);
+    
     public abstract void addDefaultWeight(int vertex1, int vertex2);
 
     public abstract void removeEdge(int vertex1, int vertex2);
@@ -49,6 +52,9 @@ public abstract class Graph {
             this.weight = weight;
         }
 
+        public int getVertex1(){
+            return vertex1;
+        }
         public int getEdgeVertex2(){
             return vertex2;
         }
