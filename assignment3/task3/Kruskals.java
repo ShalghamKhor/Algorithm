@@ -1,8 +1,10 @@
 package assignment3.task3;
 
 import assignment3.task1.Graph;
+import assignment1.unionFind;
 import java.util.ArrayList;
 import java.util.List;
+
 public class Kruskals {
     List<Graph.Edge> edges = new ArrayList<>();
     int vertices;
@@ -17,10 +19,24 @@ public class Kruskals {
 
     public List<Graph.Edge> MST(){
         MinHeap minHeap = new MinHeap();
-        Graph.Edge[] edges = MST().toArray(new Graph.Edge[0]);
+        Graph.Edge[] edgesArray = edges.toArray(new Graph.Edge[0]);
 
-        minHeap.heapSort(edges, 0, edges.length -1);
-        return null;
+        minHeap.heapSort(edgesArray, 0, edgesArray.length -1);
+        unionFind unionFind = new unionFind(vertices);
+        List<Graph.Edge> mst = new ArrayList<>();
+
+        for (Graph.Edge edge : edgesArray){
+            int x = unionFind.find(edge.getVertex1());
+            int y = unionFind.find(edge.getEdgeVertex2());
+
+            if (x != y){
+                mst.add(edge);
+                unionFind.union(x,y);
+            }
+        }
+
+
+        return mst;
     }
 
 

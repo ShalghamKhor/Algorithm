@@ -4,9 +4,12 @@ import assignment3.task1.DirectedGraph;
 import assignment3.task1.Graph;
 import assignment3.task1.UndirectedGraph;
 import assignment3.task2.GraphSearch;
+import assignment3.task3.Kruskals;
+
+import java.util.List;
 
 public class Main {
-
+/*
     public static void main(String[] args) {
         Graph graph = new DirectedGraph();
         GraphSearch graphSearch = new GraphSearch();
@@ -68,5 +71,27 @@ public class Main {
         graph.removeEdge(1,2);
         System.out.println("number of edges after removing an edge " + graph.numOfEdges());
         */
+    public static void main(String[] args) {
+        int vertices = 8;
+        Kruskals graph = new Kruskals(vertices);
+
+        graph.addEdge(0, 1, 7);
+        graph.addEdge(0,3, 6);
+        graph.addEdge(0, 6, 9);
+        graph.addEdge(1, 2, 5);
+        graph.addEdge(1, 4, 10);
+        graph.addEdge(2, 4, 4);
+        graph.addEdge(2,7, 13);
+        graph.addEdge(3, 5, 1);
+        graph.addEdge(4, 5, 3);
+        graph.addEdge(5,6,14);
+        graph.addEdge(5, 7, 16);
+
+        List<Graph.Edge> edges = graph.MST();
+        int totalweigt = 0;
+        for (Graph.Edge e : edges ){
+            totalweigt += e.getWeight();
+            System.out.println("Edge ("+ e.getVertex1() +", " + e.getEdgeVertex2() + ", " + e.getWeight()+")");
+        }
     }
 }

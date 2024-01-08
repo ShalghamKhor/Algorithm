@@ -11,6 +11,12 @@ public class unionFind {
         }
     }
 
+    public int find(int n){
+        if (n != com_id[n]){
+            com_id[n] = find(com_id[n]);
+        }
+        return com_id[n];
+    }
     public boolean connected(int a, int b) {
         return com_id[a] == com_id[b];
     }
