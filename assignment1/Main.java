@@ -1,4 +1,7 @@
-import java.util.Arrays;
+package assignment1;
+
+import assignment1.B3Sum;
+import assignment1.UnionOperation;
 
 public class Main {
     public static void main(String[] args) {

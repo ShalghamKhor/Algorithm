@@ -1,3 +1,5 @@
+package assignment1;
+
 public class QuickUnion {
     int[] comp_id;
 

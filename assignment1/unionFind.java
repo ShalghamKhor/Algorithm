@@ -1,3 +1,5 @@
+package assignment1;
+
 public class unionFind {
     int[] com_id;
 
