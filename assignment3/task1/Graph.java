@@ -55,12 +55,17 @@ public abstract class Graph {
         public int getVertex1(){
             return vertex1;
         }
-        public int getEdgeVertex2(){
+
+        public int getVertex2(){
             return vertex2;
         }
 
         public double getWeight(){
             return weight;
+        }
+        @Override
+        public String toString() {
+            return "Edge (" + vertex1 + ", " + vertex2 + ", " + weight + ")";
         }
     }
 }

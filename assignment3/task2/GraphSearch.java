@@ -20,7 +20,7 @@ public class GraphSearch {
         visited.add(start);
 
         for (Graph.Edge edge : graph.adjacent(start)){
-            int neihgbor = edge.getEdgeVertex2();
+            int neihgbor = edge.getVertex2();
             if (!visited.contains(neihgbor) && dfsHelper(graph, neihgbor, end, visited)){
                 return true;
             }
@@ -40,7 +40,7 @@ public class GraphSearch {
             visited.add(current);
 
             for (Graph.Edge edge : graph.adjacent(current)){
-                int neihbor = edge.getEdgeVertex2();
+                int neihbor = edge.getVertex2();
                 if (!visited.contains(neihbor)){
                     queue.add(neihbor);
                 }

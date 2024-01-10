@@ -1,9 +1,6 @@
 package assignment3;
 
-import assignment3.task1.DirectedGraph;
 import assignment3.task1.Graph;
-import assignment3.task1.UndirectedGraph;
-import assignment3.task2.GraphSearch;
 import assignment3.task3.Kruskals;
 
 import java.util.List;
@@ -74,7 +71,6 @@ public class Main {
     public static void main(String[] args) {
         int vertices = 8;
         Kruskals graph = new Kruskals(vertices);
-
         graph.addEdge(0, 1, 7);
         graph.addEdge(0,3, 6);
         graph.addEdge(0, 6, 9);
@@ -89,9 +85,5 @@ public class Main {
 
         List<Graph.Edge> edges = graph.MST();
         int totalweigt = 0;
-        for (Graph.Edge e : edges ){
-            totalweigt += e.getWeight();
-            System.out.println("Edge ("+ e.getVertex1() +", " + e.getEdgeVertex2() + ", " + e.getWeight()+")");
-        }
     }
 }
