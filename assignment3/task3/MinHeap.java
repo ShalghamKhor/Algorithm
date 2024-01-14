@@ -5,44 +5,69 @@ import assignment3.task1.Graph;
 import java.util.Arrays;
 
 public class MinHeap {
+    Graph.Edge[] heap;
+    int size;
 
-    public void heapSort(Graph.Edge[] edges, int low, int high) {
-        System.out.println("Initial array: " + Arrays.toString(edges));
-        for (int i = high  / 2 - 1; i >= low; i--) {
-            heapify(edges, high, i);
-        }
-        for (int i = high; i > low; i--) {
-            Graph.Edge temp = edges[0];
-            edges[0] = edges[i];
-            edges[i] = temp;
-            heapify(edges, i, 0);
-            System.out.println("Array after iteration " + i + ": " + Arrays.toString(edges));
-        }
-        System.out.println("Sorted array: " + Arrays.toString(edges));
+
+    public MinHeap(int cap){
+        this.heap = new Graph.Edge[cap];
+        this.size = 0;
+
+
     }
 
-    public void heapify(Graph.Edge[] edges, int n, int i) {
+    public void insert(Graph.Edge edge){
+        heap[size] = edge;
+        int current = size++;
+        while (current > 0 && heap[current].getWeight() < heap[getParent(current)].getWeight()) {
+            swap(current, getParent(current));
+            current = getParent(current);
+        }
+    }
 
+    public Graph.Edge extractMin(){
+
+        Graph.Edge minItem = heap[0];
+        heap[0] = heap[size -1];
+        size--;
+        heapify(0);
+        System.out.println(minItem);
+        return minItem;
+    }
+
+
+
+    public void heapify(int i) {
         int smallest = i;
-        int l = 2 * i + 1;
-        int r = 2 * i + 2;
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
 
-        if (l < n && edges[l].getWeight() < edges[smallest].getWeight()) {
-            smallest = l;
+        if (left < size && heap[left].getWeight() < heap[smallest].getWeight()) {
+            smallest = left;
         }
 
-        if (r < n && edges[r].getWeight() < edges[smallest].getWeight()) {
-            smallest = r;
+        if (right < size && heap[right].getWeight() < heap[smallest].getWeight()) {
+            smallest = right;
         }
 
         if (smallest != i) {
-            System.out.println("Swapping: " + edges[i] + " with " + edges[smallest]);
-            Graph.Edge swap = edges[i];
-            edges[i] = edges[smallest];
-            edges[smallest] = swap;
-
-            heapify(edges, n, smallest);
+            swap(i, smallest);
+            heapify(smallest);
         }
+    }
+
+    public void swap(int i , int j){
+        Graph.Edge temp = heap[i];
+        heap[i] = heap[j];
+        heap[j] = temp;
+    }
+
+    public int getParent(int i){
+        return (i -1)/2;
+    }
+
+    public int getSize(){
+        return size;
     }
 
 }

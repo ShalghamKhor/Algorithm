@@ -20,13 +20,11 @@ public class B3Sum {
             timer.startTime();
             bruteForce(randomArray, targetSum);
             timer.endTime();
-            System.out.print("Time for size using BruteForce " + size + ": ");
-            timer.duration();
+            System.out.print("Time: " +timer.duration() + "ms " + " using BruteForce  of array size:" + size + ": ");
             timer.startTime();
             twoPointer(randomArray, targetSum);
             timer.endTime();
-            System.out.print("Time for size using quicker 3sum " + size + ": ");
-            timer.duration();
+            System.out.print("Time: "+ timer.duration()+"ms " +"for using quicker 3sum of array size " + size + ": ");
             System.out.println(" ");
         }
     }

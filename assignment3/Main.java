@@ -1,7 +1,9 @@
 package assignment3;
 
+import assignment3.task1.DirectedGraph;
 import assignment3.task1.Graph;
 import assignment3.task3.Kruskals;
+import assignment3.task4.Dijkstra;
 
 import java.util.List;
 
@@ -67,12 +69,14 @@ public class Main {
 
         graph.removeEdge(1,2);
         System.out.println("number of edges after removing an edge " + graph.numOfEdges());
-        */
+
     public static void main(String[] args) {
         int vertices = 8;
         Kruskals graph = new Kruskals(vertices);
         graph.addEdge(0, 1, 7);
+
         graph.addEdge(0,3, 6);
+        graph.addEdge(1, 3, 2);
         graph.addEdge(0, 6, 9);
         graph.addEdge(1, 2, 5);
         graph.addEdge(1, 4, 10);
@@ -80,10 +84,35 @@ public class Main {
         graph.addEdge(2,7, 13);
         graph.addEdge(3, 5, 1);
         graph.addEdge(4, 5, 3);
+        graph.addEdge(4, 7, 8);
         graph.addEdge(5,6,14);
         graph.addEdge(5, 7, 16);
 
         List<Graph.Edge> edges = graph.MST();
-        int totalweigt = 0;
+
+        for (Graph.Edge edge : edges){
+            System.out.println(edge);
+        }
+    }*/
+
+    public static void main(String[] args) {
+        Graph graph = new DirectedGraph();
+        graph.addEdge(0,1,5);
+        graph.addEdge(0,3,8);
+        graph.addEdge(0,6,9);
+        graph.addEdge(1,2,15);
+        graph.addEdge(1,3,4);
+        graph.addEdge(2,7,9);
+        graph.addEdge(3,4,7);
+        graph.addEdge(3,5,6);
+        graph.addEdge(4,2,3);
+        graph.addEdge(4,7,11);
+        graph.addEdge(5,7,13);
+        graph.addEdge(6,3,5);
+        graph.addEdge(6,4,7);
+        graph.addEdge(6,7,20);
+
+        Dijkstra dj = new Dijkstra();
+        dj.dijkstra(graph, 0);
     }
 }

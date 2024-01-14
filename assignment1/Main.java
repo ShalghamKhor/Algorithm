@@ -5,10 +5,11 @@ import assignment1.UnionOperation;
 
 public class Main {
     public static void main(String[] args) {
-        B3Sum b = new B3Sum();
-        b.randomArryTest();
+        //B3Sum b = new B3Sum();
+        //randomArryTest();
         UnionOperation u = new UnionOperation();
         u.quickFindoperation();
+        u.quickUniondoperation();
     }
 
 }

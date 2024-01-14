@@ -20,8 +20,7 @@ public class UnionOperation {
                 uf.union(pari[0], pari[1]);
             }
             timer.endTime();
-            System.out.println("Time quick find for Array of Size: " + arraySize);
-            timer.duration();
+            System.out.println("Time: " + timer.duration()+ "ms, using quick find for Array of Size: " + arraySize);
 
         }
     }
@@ -37,8 +36,7 @@ public class UnionOperation {
                 qu.union(pari[0], pari[1] );
             }
             timer.endTime();
-            System.out.println("Time quick union for Array of Size: " + arraySize);
-            timer.duration();
+            System.out.println("Time: " + timer.duration() +"ms, using quick union for Array of Size: " + arraySize);
 
         }
     }

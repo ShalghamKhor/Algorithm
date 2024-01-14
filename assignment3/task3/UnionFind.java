@@ -38,6 +38,5 @@ public class UnionFind {
                 rank[a_id]++;
             }
         }
-
     }
 }
