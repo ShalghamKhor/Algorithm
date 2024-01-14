@@ -12,9 +12,9 @@ public class Dijkstra {
         Arrays.fill(distances, Double.MAX_VALUE);
         distances[source] = 0;
 
-        MinHeap heap = new MinHeap(V * V); // Assuming enough space for all edges
+        MinHeap heap = new MinHeap(V * V);
 
-        // Add all edges from the source to the heap
+
         for (Graph.Edge edge : graph.adjacent(source)) {
             heap.insert(edge);
         }
@@ -29,10 +29,10 @@ public class Dijkstra {
 
             if (visited[v]) continue;
 
-            // Update distance if it's shorter
+
             if (distances[u] + edge.getWeight() < distances[v]) {
                 distances[v] = distances[u] + edge.getWeight();
-                // Add edges of v to the heap
+
                 for (Graph.Edge nextEdge : graph.adjacent(v)) {
                     heap.insert(nextEdge);
                 }
@@ -41,6 +41,5 @@ public class Dijkstra {
             visited[v] = true;
         }
 
-        // distances array contains the shortest distances from source to each vertex
     }
 }
