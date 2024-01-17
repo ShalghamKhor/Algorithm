@@ -55,4 +55,9 @@ public class test {
             System.out.println();
         }
     }
+
+    public static void main(String[] args) {
+        test t = new test();
+        t.test();
+    }
 }

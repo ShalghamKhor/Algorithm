@@ -60,6 +60,10 @@ public abstract class Graph {
             return vertex2;
         }
 
+        public void setWeight(double weight){
+            this.weight = weight;
+        }
+
         public double getWeight(){
             return weight;
         }

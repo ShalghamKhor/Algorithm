@@ -70,4 +70,26 @@ public class MinHeap {
         return size;
     }
 
+    public void decreaseKey(int vertex, double newWeight){
+        int index = findIndex(vertex);
+        if (index == -1){
+            System.out.println("Vertex " + vertex + " not found in the heap");
+            return;
+        }
+        heap[index].setWeight(newWeight);
+        while (index > 0 && heap[index].getWeight() < heap[getParent(index)].getWeight()){
+            swap(index, getParent(index));
+            index = getParent(index);
+        }
+    }
+
+    public int findIndex(int vertex){
+        for (int i = 0; i < size; i++){
+            if (heap[i].getVertex2() == vertex){
+                return i;
+            }
+        }
+        return -1;
+    }
+
 }

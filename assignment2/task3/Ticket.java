@@ -4,32 +4,36 @@ import java.util.*;
 
 public class Ticket {
 
-    PriorityQueue<Person> queue;
+    List<Person> queue;
     HashMap<String, Person> personMap;
     HashMap<String, Integer> insertOrderMAp = new HashMap<>();
     int insertionCounter = 0;
     Deque<Person> insertOrder;
+    CustomQueue customQueue;
 
     public Ticket(){
-        queue = new PriorityQueue<>((a,b) -> b.priority - a.priority);
+        queue = new ArrayList<>();
         personMap = new HashMap<>();
         insertOrder = new LinkedList<>();
+        customQueue = new CustomQueue();
+
     }
 
     public void insert_person(String name, int priority){
         Person person = new Person(name , priority);
-        queue.offer(person);
+        queue.add(person);
         personMap.put(name, person);
         insertOrder.addLast(person);
         insertOrderMAp.put(name, insertionCounter++);
+        customQueue.sortPerson(queue);
+
     }
 
     public Person get_person(){
         if (insertOrder.isEmpty()){
             System.out.println("No more person queue");
         }
-
-        Person nextPerson = queue.poll();
+        Person nextPerson = queue.remove(0);
         personMap.remove(nextPerson.getName());
         insertOrder.remove(nextPerson);
         return nextPerson;
@@ -39,7 +43,7 @@ public class Ticket {
         if (queue.isEmpty()){
             System.out.println("No person in the queue");
         }
-        Person person = queue.poll();
+        Person person = queue.remove(0);
         personMap.remove(person.name);
         insertOrder.remove(person);
     }
@@ -54,8 +58,7 @@ public class Ticket {
         int temporary = person1.priority;
         person1.priority = person2.priority;
         person2.priority = temporary;
-
-        refreshQueue();
+        customQueue.sortPerson(queue);
     }
 
     public List<Person> get_n_person(int n){
@@ -68,24 +71,9 @@ public class Ticket {
         return persons;
     }
 
-    public void refreshQueue(){
-        PriorityQueue<Person> newQueue = new PriorityQueue<>((a,b) ->
-        {
-            if (b.priority != a.priority) {
-                return b.priority - a.priority;
-            }
-            return insertOrderMAp.get(a.getName()) - insertOrderMAp.get(b.getName());
-        });
-        for (Person person : insertOrder){
-            newQueue.offer(person);
-        }
-        queue = newQueue;
-    }
-
     public void currentQueue(){
         for (Map.Entry<String, Person> entry : personMap.entrySet()){
             System.out.println("name: " + entry.getKey() + ", Priority: " + entry.getValue().priority);
         }
     }
-
 }

@@ -114,5 +114,7 @@ public class Main {
 
         Dijkstra dj = new Dijkstra();
         dj.dijkstra(graph, 0);
+
+
     }
 }
