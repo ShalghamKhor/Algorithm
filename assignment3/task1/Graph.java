@@ -11,9 +11,8 @@ public abstract class Graph {
     }
 
     public void addVertex(int vertex){
-        for (int i = 0; i < vertex; i++) {
-            adjList.putIfAbsent(i, new ArrayList<>());
-        }
+
+        adjList.putIfAbsent(vertex, new ArrayList<>());
     }
 
     public abstract void addEdge(int vertex1, int vertex2, double weight);
