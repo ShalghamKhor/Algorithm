@@ -3,6 +3,7 @@ package assignment3;
 import assignment3.task1.DirectedGraph;
 import assignment3.task1.Graph;
 import assignment3.task3.Kruskals;
+import assignment3.task4.BellmanFord;
 import assignment3.task4.Dijkstra;
 
 import java.util.List;
@@ -100,13 +101,14 @@ public class Main {
         graph.addEdge(0,1,3);
         graph.addEdge(0,3,10);
         graph.addEdge(0,2,7);
-        graph.addEdge(3, 1,1);
+        graph.addEdge(3, 1,-25);
         graph.addEdge(1,2,2);
 
 
-
+        BellmanFord bl =new BellmanFord();
         Dijkstra dj = new Dijkstra();
         dj.dijkstra(graph, 0);
+        bl.bellmanFord(graph,0);
 
 
     }
