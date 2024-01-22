@@ -104,7 +104,6 @@ public class Main {
         graph.addEdge(1,2,2);
 
 
-
         Dijkstra dj = new Dijkstra();
         dj.dijkstra(graph, 0);
 
