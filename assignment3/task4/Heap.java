@@ -11,7 +11,6 @@ public class Heap {
         this.heap = new VertexDistance[cap];
         this.size = 0;
 
-
     }
 
     public void insert(VertexDistance distance){

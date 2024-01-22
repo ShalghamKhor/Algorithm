@@ -43,6 +43,7 @@ public class Dijkstra {
     }
 
     public void printShortestPath(int source, double[] distance, int[] pred) {
+        System.out.println("shortest paths form [" + source + "] using Dijkstra ");
         for (int v = 0; v < distance.length; v++) {
             if (v != source) {
                 System.out.print("Path from " + source + " to " + v + ": ");
@@ -64,6 +65,6 @@ public class Dijkstra {
         }
 
         printPath(pred[currentVertex], pred );
-        System.out.println(currentVertex + " ");
+        System.out.print(currentVertex + " ");
     }
 }
