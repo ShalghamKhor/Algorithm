@@ -26,8 +26,27 @@ public class Heap {
         VertexDistance minItem = heap[0];
         heap[0] = heap[size -1];
         size--;
-        System.out.println(minItem);
+        heapify(0);
+        //System.out.println("min vertex in Heap" + minItem);
         return minItem;
+    }
+
+    private void heapify(int i) {
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+        int smallest = i;
+
+        if (left < size && heap[left].getDistance() < heap[i].getDistance()) {
+            smallest = left;
+        }
+        if (right < size && heap[right].getDistance() < heap[smallest].getDistance()) {
+            smallest = right;
+        }
+
+        if (smallest != i) {
+            swap(i, smallest);
+            heapify(smallest);
+        }
     }
 
     public void swap(int i , int j){

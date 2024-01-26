@@ -15,34 +15,51 @@ public class Dijkstra {
 
         Heap heap = new Heap(numOfVertices);
         heap.insert(new VertexDistance(source,0));
-
         boolean[] visited = new boolean[numOfVertices];
+
+
 
         while (heap.getSize() > 0) {
             VertexDistance vertexDistance = heap.extractMin();
+            if (vertexDistance.getDistance() < 0) continue;
             int currentVertex = vertexDistance.getVertex();
-
             if (visited[currentVertex]) continue;
             visited[currentVertex] = true;
 
+            //System.out.println("current vertex: " + currentVertex + " wight from 0 " + vertexDistance.getDistance());
+
+            //System.out.println("shorest weights before relaxation: " + Arrays.toString(distances));
 
             for (Graph.Edge nextEdge : graph.adjacent(currentVertex)) {
+                int i = 1;
+                i++;
+
+                System.out.println("after " + i +"loop: " + Arrays.toString(distances));
                 int next = nextEdge.getVertex2();
-                if (next < 0|| next >= numOfVertices) {
+                if (next < 0 || next >= numOfVertices) {
                     continue;
                 }
                 double newDistance = distances[currentVertex] + nextEdge.getWeight();
-                if (newDistance < distances[next]){
+
+                if (newDistance < distances[next]) {
                     distances[next] = newDistance;
                     pred[next] = currentVertex;
                     heap.insert(new VertexDistance(next, newDistance));
                 }
             }
-        }
-        printShortestPath(source, distances, pred);
+            //System.out.println("shorest after relaxation: " + Arrays.toString(distances));
+
+
+            }
+
+
+
+
+        //printShortestPath(source, distances, pred);
     }
 
     public void printShortestPath(int source, double[] distance, int[] pred) {
+        System.out.println("");
         System.out.println("shortest paths form [" + source + "] using Dijkstra ");
         for (int v = 0; v < distance.length; v++) {
             if (v != source) {
@@ -57,14 +74,12 @@ public class Dijkstra {
         }
     }
 
-    public void printPath(int currentVertex, int [] pred){
+    public void printPath(int currentVertex, int[] pred){
         if (currentVertex == -1) return;
-        if (pred[currentVertex] == 0 &&currentVertex == 0){
-            System.out.println("Incorrect predecessor setup for vertex: " + currentVertex);
-            return;
+        if (pred[currentVertex] != -1) {
+            printPath(pred[currentVertex], pred);
         }
-
-        printPath(pred[currentVertex], pred );
         System.out.print(currentVertex + " ");
     }
+
 }
